@@ -35,11 +35,38 @@ def mvn_basis(
     * fi - [NxM] is the basis function vectors containing a basis function
     output fi for each data vector x in features
     '''
-    pass
+    N, D = features.shape
+    M = mu.shape[0]
+    fi = np.zeros((N, M))
 
+    for i in range(N):
+        for j in range(M):
+            fi[i, j] = multivariate_normal.pdf(features[i, :], mean=mu[j, :], cov=sigma * np.identity(D))
+
+    return fi
+    
 
 def _plot_mvn():
-    pass
+    X, t = load_regression_iris()
+    N, D = X.shape
+    M, sigma = 10, 10
+    mu = np.zeros((M, D))
+    for i in range(D):
+        mmin = np.min(X[i, :])
+        mmax = np.max(X[i, :])
+        mu[:, i] = np.linspace(mmin, mmax, M)
+    fi = mvn_basis(X, mu, sigma)
+        
+    for i in range(M):
+        plt.plot(fi[:, i], label=f"Basis function {i}")
+    
+    plt.title("Output of Each Basis Function")
+    plt.xlabel("Feature Value")
+    plt.ylabel("Basis Function Output")
+    plt.savefig("figures/plot_1_2_1.png", dpi=300)
+    # plt.legend(loc="upper right)
+    plt.show()
+
 
 
 def max_likelihood_linreg(
@@ -57,8 +84,18 @@ def max_likelihood_linreg(
 
     Output: [Mx1], the maximum likelihood estimate of w for the linear model
     '''
-    pass
-
+    # (fi.T * fi)
+    fit_fi = np.dot(fi.T, fi)
+    # (lambda * Identity Matrix)
+    reg_fit_fi = fit_fi + lamda * np.identity(fi.shape[1])
+    # Inverse Regularized fi transpose fi
+    inverse_term = np.linalg.inv(reg_fit_fi)
+    # (fi.T * targets)
+    fit_targets = np.dot(fi.T, targets)
+    # Maximum likelihood weights
+    ml_weights = np.dot(inverse_term, fit_targets)
+    
+    return ml_weights
 
 def linear_model(
     features: np.ndarray,
@@ -78,4 +115,48 @@ def linear_model(
 
     Output: [Nx1] The prediction for each data vector in features
     '''
-    pass
+    fi = mvn_basis(features, mu, sigma)
+    predictions = fi @ w
+    return predictions
+
+
+if __name__ == "__main__":
+    # 1.1
+    X, t = load_regression_iris()
+    N, D = X.shape
+    M, sigma = 10, 10
+    mu = np.zeros((M, D))
+    for i in range(D):
+        mmin = np.min(X[i, :])
+        mmax = np.max(X[i, :])
+        mu[:, i] = np.linspace(mmin, mmax, M)
+    fi = mvn_basis(X, mu, sigma)
+    print(fi)
+
+    # 1.2
+    #_plot_mvn()
+
+    # 1.3
+    lamda = 0.001
+    wml = max_likelihood_linreg(fi, t, lamda)
+    print(wml)
+
+    # 1.4
+    prediction = linear_model(X, mu, sigma, wml)
+    print(prediction)
+
+    # 1.5
+    print('Mean Square Error: ', np.mean((t - prediction)**2).round(4))
+    plt.plot(t)
+    plt.plot(prediction)
+    plt.xlabel('Data Points')
+    plt.ylabel('Target Values')
+    plt.title('Target vs Predicted')
+    plt.savefig('figures/1_5_1.png', dpi=300)
+    plt.show()
+    plt.plot(t - prediction)
+    plt.xlabel('Data Points')
+    plt.ylabel('Target Values')
+    plt.title('Difference between Target and Predicted')
+    plt.savefig('figures/1_5_2.png', dpi=300)
+    plt.show()

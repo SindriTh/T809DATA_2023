@@ -1,0 +1,7 @@
+# How good are these predictions?
+# Use plots to show the prediction accuracy, either by plotting the actual values vs predicted values or the mean-square-error.
+
+Calculating the Mean Square error we get 0.8909, which is quite high for our data.
+Plotting the actual values vs predicted values we get the plot 1_5_1.png which shows a rather large difference.
+Subtracting the difference from the actual values we can see how they vary quite a lot, as shown in the plot 1_5_2.png.
+This is not a good prediction.
