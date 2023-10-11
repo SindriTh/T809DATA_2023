@@ -1,0 +1,10 @@
+In the eigenvalue plot, the high initial values show that the first few components capture most of the data's main patterns. 
+The rapid drop indicates that later components add little new information.
+
+The cumulative variance plot shows the total information captured as we add components. 
+The sharp rise at the start tells us the first few components are very informative. 
+The leveling off means that adding more components doesn't give us much more insight.
+
+The PCA has compressed the original 30 features into a few significant PCs, capturing most of the dataset's variance. 
+Using this dimensionlity reduction helps a lot, especially when features contain correlated information.
+

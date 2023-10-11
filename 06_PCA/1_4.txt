@@ -1,0 +1,14 @@
+Features 3 and 4 seem to fit best with feature 1, 
+Feature 1 is radius_mean
+Feature 3 is perimeter_mean	
+and Feature 4 is area_mean	
+
+This makes sense, as the radius, perimeter and area of a circle are all related to each other.
+The slight varience seen in feature 4 is likely due to the fact that the "circle" is misshapen.
+
+There also seems to be slight correlation between 21, 23, and 24 which correspond to:
+radius_worst
+perimeter_worst
+area_worst
+
+This makes sense that these features would be correlated as well, as they are all related to the size of the circle.
