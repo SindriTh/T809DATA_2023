@@ -1,0 +1,6 @@
+After trying a lot of different n_estimators, depths and learning rates I finally found
+{'n_estimators': 100, 'max_depth': 2, 'learning_rate': 0.2}
+
+which preforms slightly better than the default parameters.
+Default (0.8246268656716418, 0.8111111111111111, 0.7087378640776699)
+Custom  (0.8395522388059702, 0.8488372093023255, 0.7087378640776699)

@@ -1,0 +1,15 @@
+**According to the results from section 1.7, what is the best value of k according to the objective function?**
+I would guess 15?
+The lectures don't seem to cover how to select a good value of K.
+We could overfit, which would work great on this particular data, but as we don't have any test data
+I don't know how to tell if we are overfitting.
+
+
+**If we have n samples and we set k = n, what would happen?**
+Each sample would be its own cluster center, and the objective function would be zero. 
+This is extreme overfitting.
+
+
+**Is it a good strategy to set k=n? Why/Why not?**
+This is not a good strategy because we would be massively overfitting the data. 
+We would be memorizing the training data instead of learning a general model.

@@ -1,0 +1,9 @@
+The accuracy of the k_means prediction was: 0.82
+The confusion matrix was:
+[[50  0  0]
+ [ 0 40 10]
+ [ 0 17 33]]
+
+This is a rather low accuracy, but as can be seen on the confusion matrix,
+the model is very good at predicting the first class (Versicolor), but easily gets
+confused between Setosa and Virginica.

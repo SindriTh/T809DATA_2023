@@ -1,0 +1,2 @@
+Instead of removing all the datapoints where age is NaN, I replaced them with the mean age of the dataset. 
+This is because I didn't want to lose too much data, and the mean age is a good approximation of the age of the passengers.

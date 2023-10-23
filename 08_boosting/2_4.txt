@@ -1,0 +1,5 @@
+Random Forest =     (0.8134328358208955, 0.7731958762886598, 0.7281553398058253)
+Gradient Boosting = (0.8246268656716418, 0.8111111111111111, 0.7087378640776699)
+
+On average, the Gradient Boosting model performs slightly better.
+The accuracy and precision is consistently higher using Gradient boosting, however the recall is slightly lower.
