@@ -122,4 +122,5 @@ if __name__ == "__main__":
     You can try out different sized models from this list: ["124M", "355M", "774M", "1558M"]
     Make sure you have enough space on your device since the bigger models are quite large.
     """
+    print("test")
     pass
